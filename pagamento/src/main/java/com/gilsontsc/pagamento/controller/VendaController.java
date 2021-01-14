@@ -28,7 +28,7 @@ import com.gilsontsc.pagamento.service.VendaService;
 import com.gilsontsc.pagamento.vo.VendaVO;
 
 @RestController
-@RequestMapping("/venda")
+@RequestMapping("/vendas")
 public class VendaController {
 
 	private final VendaService service;
@@ -53,7 +53,7 @@ public class VendaController {
 											 @RequestParam(value = "direction", defaultValue = "asc") String direction) {
 		
 		var sortDirection = "desc".equalsIgnoreCase(direction) ? Direction.DESC : Direction.ASC;
-		Pageable pageable = PageRequest.of(page, limit, Sort.by(sortDirection, "nome"));
+		Pageable pageable = PageRequest.of(page, limit, Sort.by(sortDirection, "data"));
 		Page<VendaVO> vendas = this.service.findAll(pageable);
 		
 		vendas.stream()

@@ -14,7 +14,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.gilsontsc.pagamento.vo.VendaVO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -42,5 +45,9 @@ public class Venda implements Serializable{
 	
 	@Column(name = "valor_total", nullable = false, length = 10)
 	private Double valorTotal;
+	
+	public static Venda create(VendaVO vendaVO) {
+		return new ModelMapper().map(vendaVO, Venda.class);
+	}
 
 }

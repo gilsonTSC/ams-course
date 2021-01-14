@@ -28,7 +28,7 @@ import com.gilsontsc.crud.data.vo.ProdutoVO;
 import com.gilsontsc.crud.service.ProdutoService;
 
 @RestController
-@RequestMapping("/produto")
+@RequestMapping("/produtos")
 public class ProdutoController {
 
 	private final ProdutoService service;

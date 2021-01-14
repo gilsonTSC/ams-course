@@ -46,7 +46,7 @@ public class ProdutoService {
 			new ResourceNotFoundException("Produto não encontrado");
 		}
 		
-		return ProdutoVO.create(this.repository.save(opProduto.get()));
+		return ProdutoVO.create(this.repository.save(Produto.create(produtoVO)));
 	}
 	
 	public void delete(Long id) {

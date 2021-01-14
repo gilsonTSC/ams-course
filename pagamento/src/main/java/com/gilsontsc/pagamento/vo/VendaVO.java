@@ -9,7 +9,6 @@ import org.springframework.hateoas.RepresentationModel;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.gilsontsc.pagamento.entity.ProdutoVenda;
 import com.gilsontsc.pagamento.entity.Venda;
 
 import lombok.AllArgsConstructor;
@@ -33,7 +32,7 @@ private static final long serialVersionUID = 1L;
 	private Date data;
 	
 	@JsonProperty("produtos")
-	private List<ProdutoVenda> produtos;
+	private List<ProdutoVendaVO> produtos;
 	
 	@JsonProperty("valorTotal")
 	private Double valorTotal;

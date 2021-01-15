@@ -10,21 +10,25 @@ import org.springframework.stereotype.Service;
 import com.gilsontsc.crud.data.vo.ProdutoVO;
 import com.gilsontsc.crud.entity.Produto;
 import com.gilsontsc.crud.exception.ResourceNotFoundException;
+import com.gilsontsc.crud.message.ProdutoSendMessage;
 import com.gilsontsc.crud.repository.ProdutoRepository;
 
 @Service
 public class ProdutoService {
 
 	private final ProdutoRepository repository;
+	private final ProdutoSendMessage produtoSendMessage;
 
 	@Autowired
-	public ProdutoService(ProdutoRepository repository) {
+	public ProdutoService(ProdutoRepository repository, ProdutoSendMessage produtoSendMessage) {
 		this.repository = repository;
+		this.produtoSendMessage = produtoSendMessage;
 	}
 	
 	public ProdutoVO create(ProdutoVO produtoVO) {
-		Produto produto = this.repository.save(Produto.create(produtoVO));
-		return ProdutoVO.create(produto);
+		ProdutoVO produtoRetorno = ProdutoVO.create(this.repository.save(Produto.create(produtoVO)));
+		this.produtoSendMessage.sendMessage(produtoRetorno);
+		return produtoRetorno;
 	}
 	
 	public Page<ProdutoVO> findAll(Pageable pageable){
